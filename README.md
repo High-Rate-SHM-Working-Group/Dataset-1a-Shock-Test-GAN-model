@@ -16,14 +16,14 @@ Cite this data as:
 Zhymir Thompson, Austin Downey, Jason Bakos, Jie Wei, Jacob Dodson, “Dataset 1a Shock Test GAN Model,”
 Apr. 2022. [Online]. Available: https://github.com/High-Rate-SHM-Working-Group/Dataset_1a_Shock_Test_GAN_model
 
-@Misc{Chowdhury2021Dataset4Univariate,  
-  author = {Zhymir Thompson and Austin Downey and Jason Bakos and Jie Wei and Jacob Dodson},  
-  month  = apr,  
-  title  = {Dataset 1a Shock Test GAN Model},  
-  year   = {2022},  
-  groups = {High-Rate-SHM-Working-Group},  
-  url    = {https://github.com/High-Rate-SHM-Working-Group/Dataset_1a_Shock_Test_GAN_model},  
-}  
+@Misc{Thompson2022Dataset1aShock,
+  author = {Zhymir Thompson and Austin Downey and Jason Bakos and Jie Wei and Jacob Dodson},
+  month  = apr,
+  title  = {Dataset 1a Shock Test GAN Model},
+  year   = {2022},
+  groups = {High-Rate-SHM-Working-Group},
+  url    = {https://github.com/High-Rate-SHM-Working-Group/Dataset_1a_Shock_Test_GAN_model},
+}
 
 
 
