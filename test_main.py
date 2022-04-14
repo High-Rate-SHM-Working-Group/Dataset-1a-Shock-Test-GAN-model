@@ -1,3 +1,4 @@
+import os
 import unittest
 from unittest import TestCase
 # TODO move imports into Test suite
@@ -10,11 +11,10 @@ class Test(TestCase):
 
     def setUp(self) -> None:
         self.num_signals = 200
-        # 4 comes from multilabel binarized representation in constants.py
-        self.gen_shape = (self.num_signals, 4)
-        self.model_output_shape = (self.num_signals, 5_000)  # Loaded model output shape
-        # TODO Make more os agnostic path selection
-        self.generator_path = './' + constants.GENERATOR_NAME  # this is bad but easy
+        self.gen_shape = (self.num_signals, constants.LABEL_LENGTH)
+        self.model_output_shape = (
+            self.num_signals, constants.MODEL_OUTPUT_LENGTH)  # Loaded model output shape
+        self.generator_path = os.path.join(os.curdir, constants.GENERATOR_NAME)
 
     # def test_random_labels(self):
     #     pass
@@ -88,6 +88,12 @@ class Test(TestCase):
             generate_data(
                 self.num_signals,
                 self.generator_path, full_list_label).shape)
+
+    def test_is_valid_label(self):
+        self.skipTest('Not written yet.')
+
+    def test_parse(self):
+        self.skipTest('Not written yet.')
 
 
 if __name__ == '__main__':
