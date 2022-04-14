@@ -45,9 +45,9 @@ def generate_data(num_signals: int, generator: str, labels=None):
         fn_labels = random_labels(num_signals, labels)
     elif isinstance(labels, (list, tuple, np.ndarray)):
         if len(labels) == 1:
-            fn_labels = np.repeat(labels, num_signals)
+            fn_labels = np.repeat(labels, num_signals, axis=0)
         elif len(labels) == num_signals:
-            fn_labels = labels
+            fn_labels = np.asarray(labels)
         else:
             # Unsure if this will allow choosing from selection, tiled repeat, or error
             raise NotImplementedError
