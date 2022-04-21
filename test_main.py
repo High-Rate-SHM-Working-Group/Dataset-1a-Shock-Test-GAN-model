@@ -4,7 +4,7 @@ from unittest import TestCase
 # TODO move imports into Test suite
 import constants
 import numpy as np
-from main import random_labels, generate_data
+from main import random_labels, generate_data, is_valid_label
 
 
 class Test(TestCase):
@@ -89,7 +89,33 @@ class Test(TestCase):
                 self.num_signals,
                 self.generator_path, full_list_label).shape)
 
+    def test_save_array(self):
+        self.skipTest('Not written yet.')
+
     def test_is_valid_label(self):
+        self.skipTest('Not written yet.')
+
+    def test_is_valid_label_none(self):
+        self.assertIsNone(is_valid_label(None))
+
+    def test_is_valid_label_str(self):
+        with self.assertRaises(ValueError):
+            is_valid_label('test_string')
+
+    def test_is_valid_label_str_int(self):
+        # for idx in range(30):
+        #     with self.subTest(idx):
+        #         self.assertEqual(str(idx), idx)
+        self.assertEqual(is_valid_label('1'), 1)
+
+    def test_is_valid_label_str_np_array(self):
+        self.assertEqual(np.array([0, 0, 1, 0]), is_valid_label('0, 0, 1, 0'))
+
+    def test_is_valid_label_str_np_array_no_commas(self):
+        with self.assertRaises(ValueError):
+            is_valid_label('0 0 1 0')
+
+    def test_is_valid_label_str_filename(self):
         self.skipTest('Not written yet.')
 
     def test_parse(self):

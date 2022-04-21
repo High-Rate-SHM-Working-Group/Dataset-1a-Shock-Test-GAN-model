@@ -37,12 +37,15 @@ def random_labels(num_signals: int, label_type: int = 0):
 
 
 def generate_data(num_signals: int, generator: str, labels=None):
-    """ """
+    """ Function to generate data.
+        :param num_signals: int
+        :param generator: str
+        :param labels: int, list, tuple, ndarray, None"""
     # if num_signals <= 0:
     #     raise ValueError(f'num_signals must be positive, {num_signals} not allowed.')
     if not (labels is None or isinstance(labels, (int, list, tuple, np.ndarray))):
         raise TypeError('labels must be int, list, or tuple')  # Might make better later
-    model = load_model(generator)
+    model = load_model(generator, compile=False)
     fn_labels = None
     if labels is None:
         fn_labels = random_labels(num_signals)
