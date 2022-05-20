@@ -1,14 +1,19 @@
 """ Script for generating data. Thompson 2022"""
 import argparse
 import os
+import os.path
 
 import constants
-from constants import GENERATOR_NAME, LATENT_DIM, SINGLE_LABELS, MULTI_LABELS, LABEL_CHOICES
+from constants import GENERATOR_NAME, LATENT_DIM, SINGLE_LABELS,\
+    MULTI_LABELS, LABEL_CHOICES
+
 import numpy as np
 import numpy.random as np_rand
+# Must come before tensorflow import to suppress warnings
+import warning_suppressor  # Calls line below while keeping imports valid
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
-import os.path
-from tensorflow import keras
+
 from tensorflow.keras.models import load_model
 
 
@@ -123,11 +128,19 @@ def parse():
     # overwrite flag
     generator_path = os.path.join(os.curdir, GENERATOR_NAME)  # this may change with changes to directory
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('--model', default=generator_path)
-    parser.add_argument('--n', '--number_of_signals', type=int, default='1')
-    parser.add_argument('--labels')
-    parser.add_argument('--output')
-    parser.add_argument('-overwrite', '-w', action='store_true')
+    parser.add_argument('--model', help="The file path to the model's directory", default=generator_path)
+    parser.add_argument('--n', '--number_of_signals', help='Number of signals to generate', type=int, default='1')
+    parser.add_argument(
+        '--labels', help='Labels to use for generating signals. Can be integer from [0, 2], array string, or path to '
+                         'file. for integer: 0 for single class, 1 for multiclass, 2 for both. The array string must '
+                         'be comma separated i.e. 0, 0, 0, 1. File to load must be .npy or .txt. Defaults to single '
+                         'class label if option not included.')
+    parser.add_argument(
+        '--output',
+        help='Name of output file to save signals. Can be .txt or .npy files')
+    parser.add_argument(
+        '-overwrite', '-w', action='store_true',
+        help='Flag to allow overwriting of output file.')
     args = parser.parse_args()
     print(args)
     signals = generate_data(args.n, args.model, is_valid_label(args.labels))
