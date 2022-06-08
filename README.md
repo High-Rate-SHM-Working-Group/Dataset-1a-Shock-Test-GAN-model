@@ -45,4 +45,4 @@ Two methods:
 
 ## Example Figures
 
-[a relative link](figures/single_signal.png)
+![alt text](figures/single_signal.png)
