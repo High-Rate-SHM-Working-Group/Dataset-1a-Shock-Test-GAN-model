@@ -42,3 +42,7 @@ Two methods:
 
 
 ### Examples
+
+## Example Figures
+
+[a relative link](figures/single_signal.png)
