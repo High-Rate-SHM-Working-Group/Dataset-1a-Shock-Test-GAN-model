@@ -25,7 +25,7 @@ Two methods:
 
 ## Example Figures
 
-![alt text](figures/single_signal.png)
+![alt text](source_code/figures/single_signal.png)
 
 
 
