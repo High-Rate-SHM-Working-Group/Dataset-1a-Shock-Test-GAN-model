@@ -19,9 +19,26 @@ Two methods:
 
 (*) This method may fail if OS doesn't allow local scripts. The commands to allow local scripts can be found online, but one can be found in access_scripts/
 ### Command Line Arguments
+--model_path: Relative file path from program to model. i.e. "./model_dir"
+
+--n/--number_of_signals: Number of signals to generate. All signals are stored in the same file.
+
+--labels: Labels to use for signal synthesis. Labels can be integers (0, 1, or 2), or comma
+            separated string representing which accelerometer types to use (i.e. '0, 0, 1, 0) for
+            accelerometer 3.
+
+--output: Path to where signals will be saved. Current supported file types .txt and .npy
+
+-w: Whether to overwrite the file if it exists. Include this flag to overwrite
 
 
 ### Examples
+
+python main.py --output synth.txt
+
+python main.py --model ./conditional_af_accel_generator_v3 --n 42 --output foo.npy -w
+
+./main.sh --n 2 --labels 0
 
 ## Example Figures
 
