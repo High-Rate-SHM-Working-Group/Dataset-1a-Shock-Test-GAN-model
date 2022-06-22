@@ -109,7 +109,7 @@ class Test(TestCase):
         self.assertEqual(is_valid_label('1'), 1)
 
     def test_is_valid_label_str_np_array(self):
-        self.assertEqual(np.array([0, 0, 1, 0]), is_valid_label('0, 0, 1, 0'))
+        np.array_equal(np.array([0, 0, 1, 0]), is_valid_label('0, 0, 1, 0'))
 
     def test_is_valid_label_str_np_array_no_commas(self):
         with self.assertRaises(ValueError):
