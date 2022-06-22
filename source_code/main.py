@@ -19,9 +19,9 @@ from tensorflow.keras.models import load_model
 
 def random_labels(num_signals: int, label_type: int = 0):
     """ Generates and returns number of random labels.
+
     :param num_signals: int
-    :param label_type: int - Can be 0 for single labels, 1 for multilabels
-    , or 2 for both.
+    :param label_type: int - Can be 0 for single labels, 1 for multilabels, or 2 for both.
     :returns: np.ndarray - array of labels of length equal to num_signals."""
     if num_signals <= 0:
         raise ValueError(
@@ -127,7 +127,7 @@ def parse():
     # num signals
     # overwrite flag
     generator_path = os.path.join(os.curdir, GENERATOR_NAME)  # this may change with changes to directory
-    parser = argparse.ArgumentParser(description='')
+    parser = argparse.ArgumentParser(description='Program for production of synthesized data.')
     parser.add_argument('--model', help="The file path to the model's directory", default=generator_path)
     parser.add_argument('--n', '--number_of_signals', help='Number of signals to generate', type=int, default='1')
     parser.add_argument(
@@ -137,7 +137,7 @@ def parse():
                          'class label if option not included.')
     parser.add_argument(
         '--output',
-        help='Name of output file to save signals. Can be .txt or .npy files')
+        help='Name of output file to save signals. Can be .txt or .npy files', default='output.txt')
     parser.add_argument(
         '-overwrite', '-w', action='store_true',
         help='Flag to allow overwriting of output file.')
