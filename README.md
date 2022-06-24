@@ -24,7 +24,7 @@ Two methods:
 --n/--number_of_signals: Number of signals to generate. All signals are stored in the same file.
 
 --labels: Labels to use for signal synthesis. Labels can be integers (0, 1, or 2), or comma
-            separated string representing which accelerometer types to use (i.e. '0, 0, 1, 0) for
+            separated string representing which accelerometer types to use (i.e. '0, 0, 1, 0') for
             accelerometer 3.
 
 --output: Path to where signals will be saved. Current supported file types .txt and .npy
