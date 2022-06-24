@@ -20,9 +20,13 @@ from tensorflow.keras.models import load_model
 def random_labels(num_signals: int, label_type: int = 0):
     """ Generates and returns number of random labels.
 
-    :param num_signals: int
+    :param num_signals: Number of signals to generate
+    :type num_signals: int
     :param label_type: int - Can be 0 for single labels, 1 for multilabels, or 2 for both.
-    :returns: np.ndarray - array of labels of length equal to num_signals."""
+    :returns: np.ndarray - array of labels of length equal to num_signals.
+    :raises ValueError: Raise value error if num_signals is non-positive
+    :raises ValueError: Raise value error if label_type is not 0, 1, or 2
+    """
     if num_signals <= 0:
         raise ValueError(
             f'num_signals must be positive, {num_signals} not allowed.')
@@ -43,9 +47,13 @@ def random_labels(num_signals: int, label_type: int = 0):
 
 def generate_data(num_signals: int, generator: str, labels=None):
     """ Function to generate data.
-        :param num_signals: int
-        :param generator: str
-        :param labels: int, list, tuple, ndarray, None"""
+        :param int num_signals: Number of signals to generate
+        :param generator: Relative path to generator object
+        :type generator: str
+        :param labels: Label(s) to be used for generating data
+        :type labels: int, list, tuple, ndarray, None
+        :returns:
+        """
     # if num_signals <= 0:
     #     raise ValueError(f'num_signals must be positive, {num_signals} not allowed.')
     if not (labels is None or isinstance(labels, (int, list, tuple, np.ndarray))):
@@ -73,9 +81,18 @@ def generate_data(num_signals: int, generator: str, labels=None):
 
 def save_array(arr, filename: str, overwrite=False):
     """ Save array of generated signals.
-        :param: arr -
-        :param: filename - str
-        :return: None"""
+
+        :param arr: Array of data to be saved
+        :type arr: np.ndarray
+        :param filename: Name of file to save array to
+        :type filename: str
+        :param bool overwrite: Whether to overwrite file at filename if already exists
+        :return: None
+        :raises NotImplementedError: File not supported, (not .npy, .txt, .gz)
+        :raises IsADirectoryError: Path is a directory, not a file
+        :raises FileExistsError: Tried to write to file that already exists.
+         Set overwrite to True to do this
+        """
     if not filename.endswith(('.npy', '.txt', '.gz')):
         raise NotImplementedError
     if os.path.isdir(filename):
@@ -90,7 +107,15 @@ def save_array(arr, filename: str, overwrite=False):
 
 
 def is_valid_label(labels):
-    """ Helper function to determine if labels can be used."""
+    """ Helper function to determine if labels can be used.
+
+        :param labels: Labels to be validated
+        :type labels: None or str
+        :rtype: None or int or np.ndarray
+        :raises TypeError: labels is not type str
+        :raises NotImplementedError: File type is not supported by this function
+        :raises ValueError: labels could not be parsed into valid type
+    """
     if labels is None:
         return None
     if not isinstance(labels, str):

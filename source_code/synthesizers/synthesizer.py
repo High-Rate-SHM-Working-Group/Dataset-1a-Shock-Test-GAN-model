@@ -7,12 +7,26 @@ from source_code.main import generate_data
 
 
 # This code will break if generator moves
-def generate_synthesized_data(num_signals=100, labels=None):
+def generate_synthesized_data(num_signals: int = 100, labels=None):
+    """ Return generated signal from generator in current directory.
+        :param int num_signals: Number of signals to generate
+        :param labels: Labels to use for generating signals
+        :type labels: None or int or np.ndarray
+        :returns: Array of signals
+        :rtype: np.ndarray
+        """
     data = generate_data(num_signals, os.path.join(os.pardir, GENERATOR_NAME), labels)
     return data
 
 
-def write_data(uni_path=None, multi_path=None):
+def write_data(uni_path=None, multi_path=None) -> None:
+    """ Write unimodal and multimodal signal data to files in separate folders.
+        :param uni_path: Folder for uni-modal data to be written to
+        :type uni_path: None or str
+        :param multi_path: Folder for multi-modal data to be written to
+        :type multi_path: None or str
+        :returns: None
+    """
     # Unimodal
     tests: int = 100
     single_names = ['Accelerometer_1', 'Accelerometer_2', 'Accelerometer_3', 'Accelerometer_4']

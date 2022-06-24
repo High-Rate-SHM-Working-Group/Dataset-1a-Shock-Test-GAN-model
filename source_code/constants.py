@@ -1,3 +1,6 @@
+""" Thompson 2022
+    Constants for package
+    """
 GENERATOR_NAME = 'conditional_af_accel_generator_v3'
 LATENT_DIM = 128
 MODEL_OUTPUT_LENGTH = 5_000
