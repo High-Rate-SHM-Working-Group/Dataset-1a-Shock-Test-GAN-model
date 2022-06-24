@@ -2,7 +2,7 @@
 import pandas as pd
 import os
 import numpy as np
-from source_code.constants import GENERATOR_NAME, SINGLE_LABELS, MULTI_LABELS, MODEL_OUTPUT_LENGTH
+from source_code.constants import GENERATOR_NAME, SINGLE_LABELS, MULTI_LABELS, TIME
 from source_code.main import generate_data
 
 
@@ -16,7 +16,7 @@ def write_data(uni_path=None, multi_path=None):
     # Unimodal
     tests: int = 100
     single_names = ['Accelerometer_1', 'Accelerometer_2', 'Accelerometer_3', 'Accelerometer_4']
-    time = np.asarray([[idx for idx in range(MODEL_OUTPUT_LENGTH)]])  # Time placeholder
+    time = np.asarray([TIME])
     num_singles = len(SINGLE_LABELS)
     labels = np.asarray(SINGLE_LABELS)
     path = uni_path if uni_path is not None else os.curdir
