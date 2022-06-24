@@ -49,8 +49,8 @@ def generate_data(num_signals: int, generator: str, labels=None):
     # if num_signals <= 0:
     #     raise ValueError(f'num_signals must be positive, {num_signals} not allowed.')
     if not (labels is None or isinstance(labels, (int, list, tuple, np.ndarray))):
-        raise TypeError('labels must be int, list, or tuple')  # Might make better later
-    model = load_model(generator, compile=False)
+        raise TypeError(f'labels must be int, list, or tuple\nGiven type {type(labels)}')  # Might make better later
+    model: tf.keras.Model = load_model(generator, compile=False)
     fn_labels = None
     if labels is None:
         fn_labels = random_labels(num_signals)
